@@ -19,7 +19,8 @@ class FatherScript
      */
     function __construct($prodaction = false, $array_option = array())
     {
-        include_once('core/prolog.php');
+        include('core/const.php');
+        include('core/config.php');
         $this->sql_query = "";
         $this->values_for_exec = array();
         $this->prodaction = $prodaction;

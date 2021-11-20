@@ -1,2 +1,4 @@
 <?php
     define('SITE_TEMPLATE_PATH', $_SERVER['DOCUMENT_ROOT']);
+    const TAG_NAME_TABLE = 'TAG';
+    const CATEGORY_NAME_TABLE = 'CATEGORY';
