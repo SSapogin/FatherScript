@@ -3,7 +3,8 @@ include('functions.php');
 include('fatherScript.php');
 
 $fatherScript = FatherScript::Instance();
-$events = $fatherScript->select('Events')->where(['DATE' => '2021-11-01'], '>=')->execute();
+
+$events = $fatherScript->select('Events')->where(['DATE' => CURRENT_YEAR], '>=')->execute();
 $secondary[TAG_NAME_TABLE] = arrangeByKey($fatherScript->select('Tags')->execute(), 'ID');
 $secondary[CATEGORY_NAME_TABLE] = arrangeByKey($fatherScript->select('Categories')->execute(), 'ID');
 
@@ -18,6 +19,6 @@ foreach ($events as &$event) {
 }
 unset($event);
 
-echo '<pre>';
 
-var_dump($events);
+//echo '<pre>';
+//var_dump($events);
