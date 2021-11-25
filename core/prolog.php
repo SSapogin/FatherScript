@@ -30,6 +30,7 @@ $eventsForJs = json_encode($events);
 $daysForJs = json_encode($days);
 
 echo '<script>';
-echo 'const events ='. $eventsForJs.';';
-echo 'const days ='. $daysForJs.';';
+echo 'window.globalData = {};';
+echo 'window.globalData.events ='. $eventsForJs.';';
+echo 'window.globalData.days ='. $daysForJs.';';
 echo '</script>';
