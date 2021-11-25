@@ -5,7 +5,14 @@ include('eventlistner.php');
 
 $fatherScript = FatherScript::Instance();
 
-$events = $fatherScript->select('Events')->where(['DATE' => CURRENT_YEAR], '>=')->execute();
+$firstDays = $fatherScript->select('WorkSchedule')->where(['DATE' => date("Y-m-d", strtotime("-6 month"))], '>=')->execute();
+$secondDays = $fatherScript->select('WorkSchedule')->where(['DATE' => date("Y-m-d", strtotime("+6 month"))], '<=')->execute();
+$days = $firstDays+$secondDays;
+
+$firstEvents = $fatherScript->select('Events')->where(['DATE' => date("Y-m-d", strtotime("-6 month"))], '>=')->execute();
+$secondEvents = $fatherScript->select('Events')->where(['DATE' => date("Y-m-d", strtotime("+6 month"))], '<=')->execute();
+$events = $firstEvents+$secondEvents;
+
 $secondary[TAG_NAME_TABLE] = arrangeByKey($fatherScript->select('Tags')->execute(), 'ID');
 $secondary[CATEGORY_NAME_TABLE] = arrangeByKey($fatherScript->select('Categories')->execute(), 'ID');
 
@@ -19,3 +26,10 @@ foreach ($events as &$event) {
     }
 }
 unset($event);
+$eventsForJs = json_encode($events);
+$daysForJs = json_encode($days);
+
+echo '<script>';
+echo 'const events ='. $eventsForJs.';';
+echo 'const days ='. $daysForJs.';';
+echo '</script>';
