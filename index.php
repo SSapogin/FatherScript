@@ -88,14 +88,44 @@ $workDays = $fatherScript->select('WorkSchedule')->where(['DATE' => CURRENT_YEAR
             </h2>
             <div class="modal-body">
                 <form action="/" method="post">
-                    <div>
-                        <label for="IS_WORK">Рабочий день?</label>
-                        <input id="IS_WORK" name="IS_WORK" type="checkbox">
-                    </div>
-                    <div>
-                        <label for="REPLACED">Подменяешь?</label>
-                        <input id="REPLACED" name="REPLACED" type="checkbox">
-                    </div>
+                    <ul>
+                        <li>
+                            <label for="IS_WORK">Рабочий день?</label>
+                            <input id="IS_WORK" name="IS_WORK" type="checkbox">
+                        </li>
+                        <li>
+                            <label for="REPLACED">Подменяешь?</label>
+                            <input id="REPLACED" name="REPLACED" type="checkbox">
+                        </li>
+                        <li>
+                            <label for="category">Выберите категорию</label>
+                            <select name="CATEGORY" id="category">
+                                <option value="Доходы">Доходы</option>
+                                <option value="Расходы">Расходы</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="tag">Выберите тег</label>
+                            <select name="TAG" id="tag">
+                                <option value="" selected>Выберите тег</option>
+                                <option value="Авто">Авто</option>
+                                <option value="Еда">Еда</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="newTag">Создать новый тег</label>
+                            <input type="text" name="NEW_TAG" id="newTag" placeholder="Создать новый тег">
+                        </li>
+                        <li>
+                            <label for="sum">Введите сумму</label>
+                            <input type="text" name="SUMM" id="sum" placeholder="Введите сумму">
+                        </li>
+                        <li>
+                            <label for="comment">Комментарий</label>
+                            <textarea name="COMMENTS" id="comment" cols="30" rows="10" maxlength="1000" placeholder="Комментарий"></textarea>
+                        </li>
+                    </ul>
+                    <input type="submit" value="Сохранить">
                 </form>
             </div>
         </div>
