@@ -79,21 +79,24 @@ $workDays = $fatherScript->select('WorkSchedule')->where(['DATE' => CURRENT_YEAR
     </script>
 
     <div id="calibration" class="modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">Калибровка графика</h3>
-                    <button onclick="popupHide();" title="Close" class="close">×</button>
-                </div>
-                <div class="modal-body">
-                    <form action="/" method="post">
-                        <p><label for="IS_WORK">Рабочий день?</label>
-                        <input id="IS_WORK" name="IS_WORK" type="checkbox"></p>
-
-                        <p><label for="REPLACED">Подменяешь?</label>
-                        <input id="REPLACED" name="REPLACED" type="checkbox"></p>
-                    </form>
-                </div>
+        <div class="modal-content">
+            <h2 class="modal-header">
+                <span class="modal-header__text" data-modal-header>Калибровка графика</span>
+                <button type="button" title="Закрыть" class="modal-header__close" data-btn-close>
+                    <span class="modal-header__close_text">×</span>
+                </button>
+            </h2>
+            <div class="modal-body">
+                <form action="/" method="post">
+                    <div>
+                        <label for="IS_WORK">Рабочий день?</label>
+                        <input id="IS_WORK" name="IS_WORK" type="checkbox">
+                    </div>
+                    <div>
+                        <label for="REPLACED">Подменяешь?</label>
+                        <input id="REPLACED" name="REPLACED" type="checkbox">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
