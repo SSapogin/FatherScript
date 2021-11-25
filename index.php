@@ -12,24 +12,12 @@ $workDays = $fatherScript->select('WorkSchedule')->where(['DATE' => CURRENT_YEAR
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
 
     <link href='/lib/main.css' rel='stylesheet' />
+    <link href='/lib/style.css' rel='stylesheet' />
     <script src='/lib/main.js'></script>
 
     <title>Calendar</title>
 </head>
 <body>
-    <style>
-        body {
-            margin: 40px 10px;
-            padding: 0;
-            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-            font-size: 14px;
-        }
-        #calendar {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-    </style>
-
     <div id='calendar-container'>
         <div id='calendar'></div>
     </div>
@@ -38,7 +26,8 @@ $workDays = $fatherScript->select('WorkSchedule')->where(['DATE' => CURRENT_YEAR
         document.addEventListener('DOMContentLoaded', function() {
             const calendarEl = document.getElementById('calendar');
             <?$green = 'rgb(143, 223, 130)';
-            $red = 'rgb(255, 159, 137)';?>
+            $red = 'rgb(255, 159, 137)';
+            $blue = '#3788d8';?>
 
             let calendar = new FullCalendar.Calendar(calendarEl, {
                 headerToolbar: {
@@ -67,7 +56,7 @@ $workDays = $fatherScript->select('WorkSchedule')->where(['DATE' => CURRENT_YEAR
                                 start: '<?=$day['DATE']?>',
                                 overlap: false,
                                 display: 'background',
-                                color: '<?=$day['IS_WORK'] ? $green : $red?>'
+                                color: '<? if($day['REPLACED'] == 1 && $day['IS_WORK'] == 1){echo $blue;} elseif ($day['IS_WORK']){echo $green;} else {echo $red;}?>'
                             },
                         <?endforeach;?>
                     <?endif;?>
@@ -88,5 +77,27 @@ $workDays = $fatherScript->select('WorkSchedule')->where(['DATE' => CURRENT_YEAR
             calendar.render();
         });
     </script>
+
+    <div id="calibration" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Калибровка графика</h3>
+                    <button onclick="popupHide();" title="Close" class="close">×</button>
+                </div>
+                <div class="modal-body">
+                    <form action="/" method="post">
+                        <p><label for="IS_WORK">Рабочий день?</label>
+                        <input id="IS_WORK" name="IS_WORK" type="checkbox"></p>
+
+                        <p><label for="REPLACED">Подменяешь?</label>
+                        <input id="REPLACED" name="REPLACED" type="checkbox"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='/lib/script.js'></script>
 </body>
 </html>
