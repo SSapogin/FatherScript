@@ -1,6 +1,7 @@
 <?php
 include('functions.php');
 include('fatherScript.php');
+include('eventlistner.php');
 
 $fatherScript = FatherScript::Instance();
 
@@ -18,7 +19,3 @@ foreach ($events as &$event) {
     }
 }
 unset($event);
-
-
-//echo '<pre>';
-//var_dump($events);
